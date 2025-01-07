@@ -1,0 +1,17 @@
+RSS Reader for Scraping Data
+The reader.py script allows you to scrape RSS feed data from a specified URL.
+
+It provides flexibility to generate the output in either JSON format or a standard format
+(e.g., plain text or XML). This tool is especially useful for parsing and extracting structured
+data from RSS feeds for further processing or analysis.
+
+
+Examples of Usage in Command Line
+
+Output in JSON Format:
+   python reader.py --json https://news.yahoo.com/rss
+This generates the output in JSON format.
+
+Output in Standard Format:
+   python reader.py https://news.yahoo.com/rss
+This generates the output in a standard format, such as plain text or XML.
