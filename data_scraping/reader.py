@@ -81,21 +81,19 @@ def rss_parser(
     #output --json
     if json:
         json_output = {
-            "title": channel_info["title"],
-            "link": channel_info["link"],
-            "description": channel_info["description"],
-            "items": [
-                {
-                    "title": item["title"],
-                    "author": item["author"],
-                    "pubDate": item["pubDate"],
-                    "link": item["link"],
-                    "categories": item["categories"],
-                    "description": item["description"],
-                }
-                for item in items
-            ]
+            # Use dictionary comprehension to exclude empty values
+            key: value
+            for key, value in channel_info.items()
+            if value and (not isinstance(value, list) or value)  # Ignore empty lists and strings
         }
+        json_output["items"] = [
+            {
+                key: value
+                for key, value in item.items()
+                if value and (not isinstance(value, list) or value)  # Ignore empty lists and strings
+            }
+            for item in items
+        ]
         return [js.dumps(json_output, indent=2)]
 
     # standard output; paste optional arguments only if they
